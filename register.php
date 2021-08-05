@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 /* store result */
                 mysqli_stmt_store_result($stmt);
 
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "Este usuario ya fue tomado.";
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $username = trim($_POST["username"]);
                 } else {
                     $username = trim($_POST["username"]);
                 }
