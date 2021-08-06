@@ -12,14 +12,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 require_once "connectionBD.php";
 
 // Define variables and initialize with empty values
-$nombre = $apellido = $telefono = $email = $edad =  $sexo = $direccion = $ciudad = $estado = $cd_postal = $fecha = $examen = $name_err = "";
+$nombre = $apellido = $telefono = $email = $dni  = $edad =  $sexo = $direccion = $ciudad = $estado = $cd_postal = $fecha = $examen = $name_err = $lastName_err = "";
 
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-     // Validate name
-       // Validate username
+    // Validate name
     if (empty(trim($_POST["nombre"]))) {
         $name_err = "Por favor ingrese un usuario.";
     } else {
@@ -38,61 +37,407 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 /* store result */
                 mysqli_stmt_store_result($stmt);
 
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "Este usuario ya fue tomado.";
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $nombre = trim($_POST["nombre"]);
                 } else {
-                    $username = trim($_POST["nombre"]);
+                    $nombre = trim($_POST["nombre"]);
                 }
             } else {
                 echo "Al parecer algo salió mal.";
             }
         }
-
         // Close statement
         mysqli_stmt_close($stmt);
     }
 
-        // Prepare an insert statement
-        $sql = "INSERT INTO patient (nombre, apellido, telefono, email, edad, sexo, direccion, ciudad, estado, cd_postal, examen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Validate last name
+    if (empty(trim($_POST["apellido"]))) {
+        $lastName_err = "Por favor ingrese un apellido";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE apellido = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $param_nombre, $param_apellido, $param_telefono, $param_email, $param_edad, $param_sexo,$param_direccion, $param_ciudad, $param_estado, $param_codigo, $param_examen);
+            mysqli_stmt_bind_param($stmt, "s", $param_apellido);
 
             // Set parameters
-            $param_nombre = $nombre;
-            $param_apellido = $apellido;
-            $param_telefono = $telefono;
-            $param_email = $email;
-            $param_edad = $edad;
-            $param_sexo = $sexo;
-            $param_direccion = $direccion;
-            $param_ciudad = $ciudad;
-            $param_estado = $estado;
-            $param_codigo = $cd_postal;
-            $param_examen = $examen;
-          
+            $param_apellido = trim($_POST["apellido"]);
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                // Redirect to login page
-                header("location: solitude.php");
-            } else {
-                echo "Algo salió mal, por favor inténtalo de nuevo.";
-            }
+                /* store result */
+                mysqli_stmt_store_result($stmt);
 
-             // Close statement
-        mysqli_stmt_close($stmt);
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $apellido = trim($_POST["apellido"]);
+                } else {
+                    $apellido = trim($_POST["apellido"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
         }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate phone
+    if (empty(trim($_POST["telefono"]))) {
+        $lastName_err = "Por favor ingrese un apellido";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE telefono = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_telefono);
+
+            // Set parameters
+            $param_telefono = trim($_POST["telefono"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $telefono = trim($_POST["telefono"]);
+                } else {
+                    $telefono = trim($_POST["telefono"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate email
+    if (empty(trim($_POST["email"]))) {
+        $lastName_err = "Por favor ingrese un email";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE email = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+
+            // Set parameters
+            $param_email = trim($_POST["email"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $email = trim($_POST["email"]);
+                } else {
+                    $email = trim($_POST["email"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    // validate DNI
+    if (empty(trim($_POST["dni"]))) {
+        $lastName_err = "Por favor ingrese su DNI";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE dni = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_dni);
+
+            // Set parameters
+            $param_dni = trim($_POST["dni"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $dni = trim($_POST["dni"]);
+                } else {
+                    $dni = trim($_POST["dni"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate age
+    if (empty(trim($_POST["edad"]))) {
+        $lastName_err = "Por favor ingrese una edad";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE edad = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_edad);
+
+            // Set parameters
+            $param_edad = trim($_POST["edad"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $edad = trim($_POST["edad"]);
+                } else {
+                    $edad = trim($_POST["edad"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate last name
+    if (empty(trim($_POST["sexo"]))) {
+        $lastName_err = "Por favor ingrese un apellido";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE sexo = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_sexo);
+
+            // Set parameters
+            $param_sexo = trim($_POST["sexo"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $sexo = trim($_POST["sexo"]);
+                } else {
+                    $sexo = trim($_POST["sexo"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate last name
+    if (empty(trim($_POST["direccion"]))) {
+        $lastName_err = "Por favor ingrese una dirección";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE direccion = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_direccion);
+
+            // Set parameters
+            $param_direccion = trim($_POST["direccion"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $direccion = trim($_POST["direccion"]);
+                } else {
+                    $direccion = trim($_POST["direccion"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate city
+    if (empty(trim($_POST["ciudad"]))) {
+        $lastName_err = "Por favor ingrese una ciudad";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE ciudad = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_ciudad);
+
+            // Set parameters
+            $param_ciudad = trim($_POST["ciudad"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $ciudad = trim($_POST["ciudad"]);
+                } else {
+                    $ciudad = trim($_POST["ciudad"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate states
+    if (empty(trim($_POST["estados"]))) {
+        $lastName_err = "Por favor eligir un estado";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE estado = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_estado);
+
+            // Set parameters
+            $param_estado = trim($_POST["estado"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $estado = trim($_POST["estado"]);
+                } else {
+                    $estado = trim($_POST["estado"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate code
+    if (empty(trim($_POST["cd_postal"]))) {
+        $lastName_err = "Por favor ingrese un codigo postal";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE cd_postal = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_codigo);
+
+            // Set parameters
+            $param_codigo = trim($_POST["cd_postal"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $cd_postal = trim($_POST["cd_postal"]);
+                } else {
+                    $cd_postal = trim($_POST["cd_postal"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate exam
+    if (empty(trim($_POST["examen"]))) {
+        $lastName_err = "Por favor seleccione un tipo de examen";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM patient WHERE examen = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_examen);
+
+            // Set parameters
+            $param_examen = trim($_POST["examen"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt)) {
+                    $examen = trim($_POST["examen"]);
+                } else {
+                    $examen = trim($_POST["examen"]);
+                }
+            } else {
+                echo "Al parecer algo salió mal.";
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Prepare an insert statement
+    $sql = "INSERT INTO patient (nombre, apellido, telefono, email, dni, edad, sexo, direccion, ciudad, estado, cd_postal, examen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "ssssssssssss", $param_nombre, $param_apellido, $param_telefono, $param_email, $param_dni, $param_edad, $param_sexo, $param_direccion, $param_ciudad, $param_estado, $param_codigo, $param_examen);
+
+        // Set parameters
+        $param_nombre = $nombre;
+        $param_apellido = $apellido;
+        $param_telefono = $telefono;
+        $param_email = $email;
+        $param_dni = $dni;
+        $param_edad = $edad;
+        $param_sexo = $sexo;
+        $param_direccion = $direccion;
+        $param_ciudad = $ciudad;
+        $param_estado = $estado;
+        $param_codigo = $cd_postal;
+        $param_examen = $examen;
+
+
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect to login page
+            header("location: solitude.php");
+        } else {
+            echo "Algo salió mal, por favor inténtalo de nuevo.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
     // Close connection
     mysqli_close($link);
 }
-
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -139,6 +484,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li class="nav-item">
                         <a class="nav-link active " aria-current="page" href="persona.php">Registrar</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="results.php">Enviar resultados</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Configuración
@@ -160,10 +508,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
     <div class="container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="row g-3" method="POST">
-            <div class="col-md-6">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="row g-3" method="post">
+            <div class="col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
                 <label for="inputPassword4" class="form-label">Nombre</label>
-                <input type="text" class="form-control" placeholder="" aria-label="First name" name="nombre" value="<?php echo $nombre;?>">
+                <input type="text" class="form-control" placeholder="" aria-label="First name" name="nombre" value="<?php echo $nombre; ?>">
                 <span class="help-block  user-error"><?php echo $name_err; ?></span>
             </div>
 
@@ -181,6 +529,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="inputEmail4" class="form-label">Email</label>
                 <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo $email; ?>">
             </div>
+
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">DNI</label>
+                <input type="text" class="form-control" placeholder="" aria-label="First name" name="dni" value="<?php echo $dni; ?>">
+            </div>
+
 
             <div class="col-md-2">
                 <label for="inputPassword4" class="form-label">Edad</label>
@@ -253,7 +607,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary" value="registrar">Registrar</button>
+                <button type="submit" class="btn btn-primary" name="submit" value="registrar">Registrar</button>
             </div>
         </form>
     </div>

@@ -45,7 +45,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                        <a class="nav-link active " aria-current="page" href="home.php">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="home.php">Inicio</a>
                     </li>
                 <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="persona.php">Registrar</a>
@@ -54,7 +54,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <a class="nav-link " aria-current="page" href="solitude.php">Solitud examenes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="results.php">Enviar resultados</a>
+                        <a class="nav-link active " aria-current="page" href="results.php">Enviar resultados</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
