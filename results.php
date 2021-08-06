@@ -22,7 +22,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <style type="text/css">
         body {
             font: 14px sans-serif;
-            text-align: center;
         }
 
         h1 {
@@ -31,6 +30,19 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         .bg-primary {
             background-color: #6f97d2 !important;
+        }
+
+        .title {
+            display: flex;
+        }
+
+        .name {
+            font-size: 30px;
+            margin-top: 50px;
+        }
+
+        .logo {
+            height: 200px;
         }
     </style>
 </head>
@@ -44,10 +56,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="home.php">Inicio</a>
                     </li>
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="persona.php">Registrar</a>
                     </li>
                     <li class="nav-item">
@@ -67,7 +79,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="logout.php">Cerrar sesión</a>
                     </li>
-                 
+
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -76,7 +88,22 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
     </nav>
-  
+    <div class="container">
+
+        <div class="title">
+            <img class="logo title" src="img/logo-for-a-dental-clinic-vector-illustration.jpg"> </img>
+            <span class="name">Clinica San francisco<span>
+        </div>
+
+        <div class="page-header">
+            <h1>Ingresar los resultados de los exámenes practicados</h1>
+        </div>
+        <div class="form">
+            <form action="" method="post">
+                
+            </form>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 

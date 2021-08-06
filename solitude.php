@@ -7,24 +7,24 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
- $inc = require_once "connectionBD.php";
+$inc = require_once "connectionBD.php";
 
- // Define variables and initialize with empty values
- /* $nombre = $dni = $email = $fechaReg = ""; */
-    if($inc){
-        $consulta = "SELECT * FROM patient";
-        $resultado = mysqli_query($link, $consulta);
-        if($resultado){
-            while($row = $resultado->fetch_array()){
-                $nombre = $row['nombre'];
-                $dni = $row['Dni'];
-                $email = $row['email'];
-                $examen = $row['examen'];
-                $fechaReg = $row['created_at'];
-            }
+// Define variables and initialize with empty values
+/* $nombre = $dni = $email = $fechaReg = ""; */
+if ($inc) {
+    $consulta = "SELECT * FROM patient";
+    $resultado = mysqli_query($link, $consulta);
+    if ($resultado) {
+        while ($row = $resultado->fetch_array()) {
+            $nombre = $row['nombre'];
+            $dni = $row['Dni'];
+            $email = $row['email'];
+            $examen = $row['examen'];
+            $fechaReg = $row['created_at'];
         }
     }
-    mysqli_close($link);
+}
+mysqli_close($link);
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +53,41 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         .bg-primary {
             background-color: #6f97d2 !important;
         }
+
+        .patient {
+            margin-top: 50px;
+            border: 1px solid #C00;
+            height: 200px;
+        }
+
+        .header {
+            border: 1px solid #C00;
+            height: 90px;
+            display: flex;
+        }
+
+        .header h3 {
+            margin-top: 23px;
+        }
+
+        img {
+            height: 85px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .date{
+            margin-left: 10px;
+        }
+        .buttonResult{
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            bottom: 50px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -65,10 +100,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="home.php">Inicio</a>
                     </li>
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="persona.php">Registrar</a>
                     </li>
                     <li class="nav-item">
@@ -85,7 +120,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="logout.php">Cerrar sesión</a>
                     </li>
-                 
+
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -96,18 +131,26 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </nav>
 
     <div class="container">
-        <h2>solitud de examenes</h2>
-        <div>
-            <h3><?php echo $nombre ?></h3>
-            <p>
-                <b>DNI: <?php echo $dni ?> </b> <br>
-                <b> Email: <?php echo $email ?></b> <br>
-                <b> Tipo de examen: <?php echo $examen ?></b> <br>
-                <b>Fecha de la solitud: <?php $fechaReg ?></b> <br>
-            </p>
+        <h2>solitud de examenes:</h2>
+
+        <div class="patient">
+            <div class="header">
+                <img src="img/logo-for-a-dental-clinic-vector-illustration.jpg"></img>
+                <h3>Clinica San francisco DC</h3>
+            </div>
+            <div class="date">
+                <p class="name"><?php echo $nombre ?></p>
+                <p>
+                    <b>DNI: <?php echo $dni ?> </b> <br>
+                    <b> Email: <?php echo $email ?></b> <br>
+                    <b> Tipo de examen: <?php echo $examen ?></b> <br>
+                    <b>Fecha de la solitud: <?php $fechaReg ?></b> <br>
+                    <span class="buttonResult"><input type="submit" class="btn btn-primary" value="Resultados"></span>
+                </p>
+            </div>
         </div>
     </div>
-  
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 
