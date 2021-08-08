@@ -29,8 +29,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
         .bg-primary {
-            background-color: #6f97d2 !important;
+            background-color: #1F3A68 !important;
+           
         }
+        .bg-secundary{
+            color: #8198C9;
+        }
+
 
         .title {
             display: flex;
@@ -42,7 +47,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
         .logo {
-            height: 200px;
+            height: 250px;
         }
     </style>
 </head>
@@ -50,7 +55,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <h1><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+            <h1 class="bg-secundary"><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,7 +96,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <div class="container">
 
         <div class="title">
-            <img class="logo title" src="img/logo-for-a-dental-clinic-vector-illustration.jpg"> </img>
+            <img class="logo title" src="img/WhatsApp Image 2021-08-07 at 9.24.00 PM.jpeg"> </img>
             <span class="name">Clinica San francisco<span>
         </div>
 

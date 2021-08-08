@@ -457,14 +457,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style type="text/css">
         body {
             font: 14px sans-serif;
+
         }
 
         h1 {
             font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container h1 {
+            margin-top: 20px;
+            margin-left: 10px;
         }
 
         .bg-primary {
-            background-color: #6f97d2 !important;
+            background-color: #1F3A68 !important;
+
+        }
+
+        .bg-secundary {
+            color: #8198C9;
+        }
+
+        .form {
+            margin-top: 30px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: 3px solid #1F3A68;
+            padding: 10px;
+            height: 480px;
+        }
+
+        .formInput {
+            padding: 10px;
+            height: 460px;
+        }
+        .input{
+            position: relative;
+            top: 18px;
+        }
+        .inputStyle {
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: 1px solid #8198C9;
+            color: #1F877A;
+            font-weight: bold;
+        }
+        
+        .buttonSubmit{
+            margin-top: 30px;
+        }
+        .button-primary{
+            background-color: #1F3A68;
+            color: white;
+        }
+        .button-primary:hover{
+            background-color: #204683;
+            color: white;
         }
     </style>
 </head>
@@ -472,7 +523,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <h1><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+            <h1 class="bg-secundary"><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -508,108 +559,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
     <div class="container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="row g-3" method="post">
-            <div class="col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                <label for="inputPassword4" class="form-label">Nombre</label>
-                <input type="text" class="form-control" placeholder="" aria-label="First name" name="nombre" value="<?php echo $nombre; ?>">
-                <span class="help-block  user-error"><?php echo $name_err; ?></span>
-            </div>
+        <h1>Datos del paciente</h1>
+        <div class="form">
+            <div class="formInput">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="row g-6" method="post">
+                    <div class="col-md-6  <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                        <label for="inputPassword4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control inputStyle" placeholder="" aria-label="First name" name="nombre" value="<?php echo $nombre; ?>">
+                        <span class="help-block  user-error"><?php echo $name_err; ?></span>
+                    </div>
 
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Apellido</label>
-                <input type="text" class="form-control" placeholder="" aria-label="First name" name="apellido" value="<?php echo $apellido; ?>">
-            </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Apellido</label>
+                        <input type="text" class="form-control inputStyle" placeholder="" aria-label="First name" name="apellido" value="<?php echo $apellido; ?>">
+                    </div>
 
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Telefono</label>
-                <input type="text" class="form-control" placeholder="" aria-label="First name" name="telefono" value="<?php echo $telefono; ?>">
-            </div>
+                    <div class="col-md-6 input">
+                        <label for="inputPassword4" class="form-label">Telefono</label>
+                        <input type="text" class="form-control inputStyle" placeholder="" aria-label="First name" name="telefono" value="<?php echo $telefono; ?>">
+                    </div>
 
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo $email; ?>">
-            </div>
+                    <div class="col-md-6 input">
+                        <label for="inputEmail4" class="form-label">Email</label>
+                        <input type="email" class="form-control inputStyle" id="inputEmail4" name="email" value="<?php echo $email; ?>">
+                    </div>
 
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">DNI</label>
-                <input type="text" class="form-control" placeholder="" aria-label="First name" name="dni" value="<?php echo $dni; ?>">
-            </div>
+                    <div class="col-md-6 input">
+                        <label for="inputPassword4" class="form-label">DNI</label>
+                        <input type="text" class="form-control inputStyle" placeholder="" aria-label="First name" name="dni" value="<?php echo $dni; ?>">
+                    </div>
 
 
-            <div class="col-md-2">
-                <label for="inputPassword4" class="form-label">Edad</label>
-                <input type="number" class="form-control" placeholder="" aria-label="First name" name="edad" value="<?php echo $edad; ?>">
-            </div>
+                    <div class="col-md-2 input">
+                        <label for="inputPassword4" class="form-label">Edad</label>
+                        <input type="number" class="form-control inputStyle" placeholder="" aria-label="First name" name="edad" value="<?php echo $edad; ?>">
+                    </div>
 
-            <div class="col-md-2">
-                <label for="inputState" class="form-label">Sexo</label>
-                <select id="inputState" class="form-select" name="sexo" value="<?php echo $sexo; ?>">
-                    <option value="hombre">Hombre</option>
-                    <option value="mujer">Mujer</option>
-                </select>
-            </div>
+                    <div class="col-md-2 input">
+                        <label for="inputState" class="form-label">Sexo</label>
+                        <select id="inputState" class="form-select inputStyle" name="sexo" value="<?php echo $sexo; ?>">
+                            <option class="inputStyle" value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </select>
+                    </div>
 
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="" name="direccion" value="<?php echo $direccion; ?>">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?php echo $ciudad; ?>">
-            </div>
-            <div class="col-md-4">
-                <label for="inputState" class="form-label">Estado</label>
-                <select id="inputState" class="form-select" name="estado" value="<?php echo $estado; ?>">
-                    <option value="amazonas" selected>Amazonas</option>
-                    <option value="anzoátegui">Anzoátegui</option>
-                    <option value="apure">Apure</option>
-                    <option value="aragua">Aragua</option>
-                    <option value="barinas">Barinas</option>
-                    <option value="bolivar">Bolivar</option>
-                    <option value="carabobo">Carabobo</option>
-                    <option value="cojedes">Cojedes</option>
-                    <option value="delta amacuro">Delta Amacuro</option>
-                    <option value="distrito capital">Distrito Capital/option>
-                    <option value="falcón">Falcón</option>
-                    <option value="Guarico">Guarico</option>
-                    <option value="Lara">Lara</option>
-                    <option value="merida">Merida</option>
-                    <option value="miranda">Miranda</option>
-                    <option value="monagas">Monagas</option>
-                    <option value="nueva esparta">Nueva Esparta</option>
-                    <option value="portuguesa">Portuguesa</option>
-                    <option value="sucre">Sucre</option>
-                    <option value="tachira">Tachira</option>
-                    <option value="trujillo">Trujillo</option>
-                    <option value="vargas">Vargas</option>
-                    <option value="yaracuy">Yaracuy</option>
-                    <option value="zulia">Zulia</option>
+                    <div class="col-12 input">
+                        <label for="inputAddress" class="form-label">Dirección</label>
+                        <input type="text" class="form-control inputStyle" id="inputAddress" placeholder="" name="direccion" value="<?php echo $direccion; ?>">
+                    </div>
+                    <div class="col-md-6 input">
+                        <label for="inputCity" class="form-label">Ciudad</label>
+                        <input type="text" class="form-control inputStyle" id="inputCity" name="ciudad" value="<?php echo $ciudad; ?>">
+                    </div>
+                    <div class="col-md-4 input">
+                        <label for="inputState" class="form-label">Estado</label>
+                        <select id="inputState" class="form-select inputStyle" name="estado" value="<?php echo $estado; ?>">
+                            <option value="amazonas" selected>Amazonas</option>
+                            <option value="anzoátegui">Anzoátegui</option>
+                            <option value="apure">Apure</option>
+                            <option value="aragua">Aragua</option>
+                            <option value="barinas">Barinas</option>
+                            <option value="bolivar">Bolivar</option>
+                            <option value="carabobo">Carabobo</option>
+                            <option value="cojedes">Cojedes</option>
+                            <option value="delta amacuro">Delta Amacuro</option>
+                            <option value="distrito capital">Distrito Capital/option>
+                            <option value="falcón">Falcón</option>
+                            <option value="Guarico">Guarico</option>
+                            <option value="Lara">Lara</option>
+                            <option value="merida">Merida</option>
+                            <option value="miranda">Miranda</option>
+                            <option value="monagas">Monagas</option>
+                            <option value="nueva esparta">Nueva Esparta</option>
+                            <option value="portuguesa">Portuguesa</option>
+                            <option value="sucre">Sucre</option>
+                            <option value="tachira">Tachira</option>
+                            <option value="trujillo">Trujillo</option>
+                            <option value="vargas">Vargas</option>
+                            <option value="yaracuy">Yaracuy</option>
+                            <option value="zulia">Zulia</option>
 
-                </select>
+                        </select>
+                    </div>
+                    <div class="col-md-2 input">
+                        <label for="inputZip" class="form-label">Codigo postal</label>
+                        <input type="text" class="form-control inputStyle" id="inputZip" name="cd_postal" value="<?php echo $cd_postal; ?>">
+                    </div>
+                    <div class="col-md-4 input ">
+                        <label for="inputState" class="form-label">Tipo de examen</label>
+                        <select id="inputState" class="form-select inputStyle" name="examen" value="<?php echo $examen; ?>">
+                            <option selected value="hematologia">Hematologia</option>
+                            <option value="liquidos organicos">Líquidos orgánicos</option>
+                            <option value="urianalisis">Urianálisis</option>
+                            <option value="parasitología">Parasitología</option>
+                            <option value="inmunología">Inmunología</option>
+                            <option value="bioquimica">Bioquímica</option>
+                            <option value="coagulación">Coagulación</option>
+                            <option value="endocrinologia">Endocrinología</option>
+                            <option value="distrito">Distrito Capital</option>
+                            <option value="toxicología">Toxicología</option>
+                        </select>
+                    </div>
+                    <div class="col-12 buttonSubmit">
+                        <button type="submit" class="btn button-primary" name="submit" value="registrar">Registrar</button>
+                    </div>
             </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Codigo postal</label>
-                <input type="text" class="form-control" id="inputZip" name="cd_postal" value="<?php echo $cd_postal; ?>">
-            </div>
-            <div class="col-md-4">
-                <label for="inputState" class="form-label">Tipo de examen</label>
-                <select id="inputState" class="form-select" name="examen" value="<?php echo $examen; ?>">
-                    <option selected value="hematologia">Hematologia</option>
-                    <option value="liquidos organicos">Líquidos orgánicos</option>
-                    <option value="urianalisis">Urianálisis</option>
-                    <option value="parasitología">Parasitología</option>
-                    <option value="inmunología">Inmunología</option>
-                    <option value="bioquimica">Bioquímica</option>
-                    <option value="coagulación">Coagulación</option>
-                    <option value="endocrinologia">Endocrinología</option>
-                    <option value="distrito">Distrito Capital</option>
-                    <option value="toxicología">Toxicología</option>
-                </select>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="submit" value="registrar">Registrar</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

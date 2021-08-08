@@ -30,7 +30,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
         .bg-primary {
-            background-color: #6f97d2 !important;
+            background-color: #1F3A68 !important;
+        }
+
+        .bg-secundary {
+            color: #8198C9;
+        }
+        .logo{
+            
+        }
+        img{
+            height: 400px
         }
     </style>
 </head>
@@ -38,16 +48,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <h1><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+            <h1 class="bg-secundary"><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link active " aria-current="page" href="home.php">Inicio</a>
                     </li>
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="persona.php">Registrar</a>
                     </li>
                     <li class="nav-item">
@@ -67,7 +77,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="logout.php">Cerrar sesión</a>
                     </li>
-                 
+
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -76,7 +86,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
     </nav>
-  
+
+    <div class="container">
+        <div class="logo">
+            <img src="img/WhatsApp Image 2021-08-07 at 9.24.00 PM.jpeg"> </img>
+            <p>Administrative site</p>
+        </div>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 

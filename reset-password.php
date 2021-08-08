@@ -127,8 +127,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .bg-primary {
-            background-color: #6f97d2 !important;
+            background-color: #1F3A68 !important;
+           
         }
+        .bg-secundary{
+            color: #8198C9;
+        }
+
 
         .border-prima {
             border-color: #6f97d2;
@@ -161,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <h1><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+            <h1 class="bg-secundary"><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

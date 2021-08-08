@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style type="text/css">
         body {
             font: 14px sans-serif;
-            background: url("./img/undraw_medicine_b1ol (1).png") no-repeat center center fixed;
+            background: url("./img/medicine.png") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;

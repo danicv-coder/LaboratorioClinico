@@ -9,8 +9,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 $inc = require_once "connectionBD.php";
 
-// Define variables and initialize with empty values
-/* $nombre = $dni = $email = $fechaReg = ""; */
 if ($inc) {
     $consulta = "SELECT * FROM patient";
     $resultado = mysqli_query($link, $consulta);
@@ -18,7 +16,7 @@ if ($inc) {
         while ($row = $resultado->fetch_array()) {
             $nombre = $row['nombre'];
             $dni = $row['Dni'];
-            $email = $row['email'];
+            $telefono = $row['telefono'];
             $examen = $row['examen'];
             $fechaReg = $row['created_at'];
         }
@@ -51,17 +49,23 @@ mysqli_close($link);
         }
 
         .bg-primary {
-            background-color: #6f97d2 !important;
+            background-color: #1F3A68 !important;
+           
+        }
+        .bg-secundary{
+            color: #8198C9;
         }
 
         .patient {
             margin-top: 50px;
-            border: 1px solid #C00;
-            height: 200px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: 3px solid #1F3A68;
+            height: 230px;
         }
 
         .header {
-            border: 1px solid #C00;
             height: 90px;
             display: flex;
         }
@@ -71,12 +75,15 @@ mysqli_close($link);
         }
 
         img {
+            margin-top: 4px;
             height: 85px;
+            margin-left: 6px;
         }
 
         .name {
             font-size: 20px;
             font-weight: bold;
+            margin-top: 5px;
         }
         .date{
             margin-left: 10px;
@@ -88,13 +95,21 @@ mysqli_close($link);
             bottom: 50px;
             margin-right: 10px;
         }
+        .button-primary{
+            background-color: #1F3A68;
+            color: white;
+        }
+        .button-primary:hover{
+            background-color: #204683;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <h1><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+            <h1 class="bg-secundary"><b>@<?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -135,17 +150,18 @@ mysqli_close($link);
 
         <div class="patient">
             <div class="header">
-                <img src="img/logo-for-a-dental-clinic-vector-illustration.jpg"></img>
+                <img src="img/WhatsApp Image 2021-08-07 at 9.24.00 PM.jpeg"></img>
                 <h3>Clinica San francisco DC</h3>
             </div>
+            <hr>
             <div class="date">
-                <p class="name"><?php echo $nombre ?></p>
+                <h3 class="name"><?php echo $nombre ?></h3>
                 <p>
                     <b>DNI: <?php echo $dni ?> </b> <br>
-                    <b> Email: <?php echo $email ?></b> <br>
-                    <b> Tipo de examen: <?php echo $examen ?></b> <br>
+                    <b>Telefono: <?php echo $telefono ?></b> <br>
+                    <b>examen a realizar: <?php echo $examen ?></b> <br>
                     <b>Fecha de la solitud: <?php $fechaReg ?></b> <br>
-                    <span class="buttonResult"><input type="submit" class="btn btn-primary" value="Resultados"></span>
+                    <span class="buttonResult"><input type="submit" class="btn button-primary" value="Resultados"></span>
                 </p>
             </div>
         </div>
