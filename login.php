@@ -170,6 +170,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             position: absolute;
             top: 78%;
         }
+
+        .button-primary {
+            background-color: #1F3A68;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: #204683;
+            color: white;
+        }
     </style>
 
 </head>
@@ -198,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="help-block"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group buttonlogin">
-                        <input type="submit" class="btn btn-primary" value="Ingresar">
+                        <button type="submit" class="btn button-primary" value="registrar">Ingresar</button>
                     </div>
                     <p class="paragraph1">¿No tienes una cuenta? <a href="register.php">Regístrate ahora</a>.</p>
                 </form>

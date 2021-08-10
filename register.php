@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style type="text/css">
         body {
             font: 14px sans-serif;
-            background: url("./img/undraw_medicine_b1ol (1).png") no-repeat center center fixed;
+            background: url("./img/medicine.png") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -179,6 +179,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             position: absolute;
             top: 83%;
         }
+
+        .button-primary {
+            background-color: #1F3A68;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: #204683;
+            color: white;
+        }
         
     </style>
 </head>
@@ -206,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="help-block"><?php echo $confirm_password_err; ?></span>
                     </div>
                     <div class="form-group buttonlogin">
-                        <input type="submit" class="btn btn-primary" value="Ingresar">
+                    <button type="submit" class="btn button-primary" value="registrar">Ingresar</button>
                         <input type="reset" class="btn btn-default" value="Borrar">
                     </div>
                     <p class="paragraph1">¿Ya tienes una cuenta? <a href="login.php">Ingresa aquí</a>.</p>

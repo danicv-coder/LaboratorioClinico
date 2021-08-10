@@ -79,10 +79,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </li>
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+               
             </div>
         </div>
     </nav>
@@ -90,7 +87,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <div class="container">
         <div class="logo">
             <img src="img/WhatsApp Image 2021-08-07 at 9.24.00 PM.jpeg"> </img>
-            <p>Administrative site</p>
+            <p>Sitio administrativo</p>
         </div>
     </div>
 

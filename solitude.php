@@ -137,10 +137,6 @@ mysqli_close($link);
                     </li>
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -161,7 +157,7 @@ mysqli_close($link);
                     <b>Telefono: <?php echo $telefono ?></b> <br>
                     <b>examen a realizar: <?php echo $examen ?></b> <br>
                     <b>Fecha de la solitud: <?php $fechaReg ?></b> <br>
-                    <span class="buttonResult"><input type="submit" class="btn button-primary" value="Resultados"></span>
+                    <span class="buttonResult"><a class="btn button-primary" href="results.php">Resultados</a></span>
                 </p>
             </div>
         </div>
